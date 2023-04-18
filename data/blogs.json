@@ -1,31 +1,58 @@
 {
-    "blogs": [
-        { 
-            "name": "Andrew", 
-            "title": "My First Blog", 
-            "category": "General", 
-            "body": "Hey guys this is my first blog post! I was hoping to have a lot more to say but all I can think of is welcome to my app!", 
-            "date": "4/16/2023", 
-            "checked": false, 
-            "id": 1
-        },
-        { 
-            "name": "Andrew", 
-            "title": "Day at the skatepark", 
-            "category": "Skateboarding", 
-            "body": "I guess today I want to talk about skateboarding. So, today I went to the Greenwood skatepark with my dog Zeus and finally decided to try a boneless 180 down the 8 stair cause I havent done it in a while. Bad decision.", 
-            "date": "4/17/2023", 
-            "checked": false, 
-            "id": 2
-        },
-        { 
-            "name": "Emma", 
-            "title": "Whats it like to be a dog?", 
-            "category": "Animals", 
-            "body": "I wonder what its like to be a dog. You get to sleep all day, eat, and drink. Not to mention all the places you can pee and poop and not have to worry about other people looking at you weird haha", 
-            "date": "4/18/2023", 
-            "checked": false, 
-            "id": 3
-        }
-    ]
+  "blogs": [
+    {
+      "name": "Andrew",
+      "title": "My First Blog",
+      "category": "General",
+      "body": "Hey guys this is my first blog post! I was hoping to have a lot more to say but all I can think of is welcome to my app!",
+      "date": "4/16/2023",
+      "checked": false,
+      "id": 1
+    },
+    {
+      "name": "Andrew",
+      "title": "Day at the skatepark",
+      "category": "Skateboarding",
+      "body": "I guess today I want to talk about skateboarding. So, today I went to the Greenwood skatepark with my dog Zeus and finally decided to try a boneless 180 down the 8 stair cause I havent done it in a while. Bad decision.",
+      "date": "4/17/2023",
+      "checked": false,
+      "id": 2
+    },
+    {
+      "name": "Emma",
+      "title": "Whats it like to be a dog?",
+      "category": "Animals",
+      "body": "I wonder what its like to be a dog. You get to sleep all day, eat, and drink. Not to mention all the places you can pee and poop and not have to worry about other people looking at you weird haha",
+      "date": "4/18/2023",
+      "checked": false,
+      "id": 3
+    },
+    {
+      "name": "Zeus",
+      "title": "Bark Bark",
+      "category": "Dog",
+      "body": " bark bark bark bark bark bark barkbark bark barkbark barkbarkbark bark",
+      "date": "2023-04-18",
+      "checked": false,
+      "id": 4
+    },
+    {
+      "name": "asdfasdfasdf",
+      "title": "asdfasdfasdf",
+      "category": "asdfasdfasdf",
+      "body": "asfasdfasfasdfasfd",
+      "date": "2023-03-30",
+      "checked": false,
+      "id": 5
+    },
+    {
+      "name": "asdfasdfasdfa",
+      "title": "asdfasdfasdf",
+      "category": "sdfasdfasdf",
+      "body": "asdfasdfasdfasdasdfasdfasdfasdfasdf",
+      "date": "2023-04-18",
+      "checked": false,
+      "id": 6
+    }
+  ]
 }
