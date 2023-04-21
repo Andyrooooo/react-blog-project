@@ -15,7 +15,7 @@
       "category": "Skateboarding",
       "body": "I guess today I want to talk about skateboarding. So, today I went to the Greenwood skatepark with my dog Zeus and finally decided to try a boneless 180 down the 8 stair cause I havent done it in a while. Bad decision.",
       "date": "2023-04-17",
-      "checked": true,
+      "checked": false,
       "id": 2
     },
     {
@@ -44,6 +44,114 @@
       "date": "2023-04-02",
       "checked": false,
       "id": 5
+    },
+    {
+      "name": "Clark Griswald",
+      "title": "I want to go on vacation",
+      "category": "Vacation",
+      "body": "I want to take my family on vacation because I think we all deserve it and I need to get away from my terrible neighbors.",
+      "date": "2023-04-20",
+      "checked": false,
+      "id": 6
+    },
+    {
+      "name": "Marty",
+      "title": "Is time travel really possible?",
+      "category": "Time Travel",
+      "body": "I had a bizarre dream the other day that my friend had built a time matchine out of a delorian. It felt so real I couldn't decifer between reality and make believe.",
+      "date": "2023-04-20",
+      "checked": false,
+      "id": 7
+    },
+    {
+      "name": "Chewbacca",
+      "title": "ahhraahhh",
+      "category": "Rah",
+      "body": "rrrraaaahh uhhhh raaahhh rahhhhh",
+      "date": "2023-04-20",
+      "checked": false,
+      "id": 8
+    },
+    {
+      "name": "Dan the laptop man",
+      "title": "PC laptops needs new ideas",
+      "category": "Computer ads",
+      "body": "I was looking at our sales for this week and saw that we are in a spiral down. I want fresh ideas I love the people and want them to love us. I need new ideas!!!!",
+      "date": "2023-04-20",
+      "checked": false,
+      "id": 9
+    },
+    {
+      "name": "Rick Sanchez",
+      "title": "PARTAAAYYYY",
+      "category": "Events",
+      "body": "YO BROOOOOO! Wanna party with the coolest and most intelligent being in the universe and multi-universes? That's right I'm throwing a party at my place this saturday and if you don't come ill tell them all about your secret. \nWub-a-lub-a-dub-dub!!!",
+      "date": "2023-04-29",
+      "checked": false,
+      "id": 10
+    },
+    {
+      "name": "Morty Smith",
+      "title": "DONT COME TO MY HOUSE",
+      "category": "emergency",
+      "body": "Hey guys, I know you have recently seen a post about my grandpa inviting eveyone over. DON'T DO IT. I'm finally catching up with school and I dont want a bunch of people running around my house while I try to study. Summer told me about the party so if you get mad at anyone, blame her.",
+      "date": "2023-04-29",
+      "checked": false,
+      "id": 11
+    },
+    {
+      "name": "casdfasdfasdf",
+      "title": "dfasdfasdf",
+      "category": "asdfasdfas",
+      "body": "asdfasdfasdfasdf",
+      "date": "2023-03-30",
+      "checked": false,
+      "id": 12
+    },
+    {
+      "name": "s",
+      "title": "s",
+      "category": "s",
+      "body": "s",
+      "date": "2023-04-03",
+      "checked": false,
+      "id": 13
+    },
+    {
+      "name": "s",
+      "title": "s",
+      "category": "s",
+      "body": "s",
+      "date": "2023-03-27",
+      "checked": false,
+      "id": 14
+    },
+    {
+      "name": "s",
+      "title": "s",
+      "category": "s",
+      "body": "s",
+      "date": "2023-04-11",
+      "checked": false,
+      "id": 15
+    },
+    {
+      "name": "s",
+      "title": "s",
+      "category": "s",
+      "body": "s",
+      "date": "2023-04-18",
+      "checked": false,
+      "id": 16
+    },
+    {
+      "name": "s",
+      "title": "s",
+      "category": "s",
+      "body": "s",
+      "date": "2023-04-20",
+      "checked": false,
+      "id": 17
     }
   ]
 }
