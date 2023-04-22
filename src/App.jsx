@@ -1,3 +1,4 @@
+
 /* -------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------
@@ -23,37 +24,65 @@ function App() {
   
   const [blogs, setBlogs] = useState([])
   const [error, setError] = useState(null)
-  const [isPending, setIsPending] = useState(true)
+/*   const [isPending, setIsPending] = useState(true) */
   const [search, setSearch] = useState('')
-  const [currentPage, setCurrentPage] = useState(0)
-  const [pageLimit] = useState(4)
-  const [data, setData] = useState()
-
-  /* const [currentPage, setCurrentPage] = useState(1) */
 
 
 
-//------------------------------------------fetch block
 
-    const fetchBlogs = async (start, end, increase) => {
+  //------------------------------------------fetch block
+
+  const fetchBlogs = async () => {
     try {
-      const response = await fetch(`http://localhost:3500/blogs?_start=${start}&_end=${end}`)
+      const response = await fetch(API_URL)
       if (!response.ok) throw Error('Oh no the data isnt showing...')
       const blogItems = await response.json()
       /* console.log(blogItems) */
       setBlogs(blogItems)
-      setCurrentPage(currentPage + increase)
+/*       setCurrentPage(currentPage + increase) */
       setError(null)
     } catch (err) {
       setError(err.message)
-    } finally {
+    } /* finally {
       setIsPending(false)
-    }
+    } */
   }
 
+ /*  useEffect(() => {
+    (async () => await fetchBlogs())()
+  }, []) */
+
   useEffect(() => {
-    (async () => await fetchBlogs(0, 4, 0))()
-  }, [])
+    fetch(API_URL)
+      .then((response) => response.json())
+      .then((data) => setBlogs(data));
+  }, []);
+
+  
+  //------------------------------------------------End of fetch block
+
+
+//------------------------------------------fetch block
+
+//     const fetchBlogs = async () => {
+//     try {
+//       const response = await fetch(API_URL)
+//       if (!response.ok) throw Error('Oh no the data isnt showing...')
+//       const blogItems = await response.json()
+//       /* console.log(blogItems) */
+//       setBlogs(blogItems)
+// /*       setCurrentPage(currentPage + increase) */
+//       setError(null)
+//     } catch (err) {
+//       setError(err.message)
+//     } finally {
+//       setIsPending(false)
+//     }
+//   }
+
+//   useEffect(() => {
+//     (async () => await fetchBlogs())()
+//   }, [])
   //------------------------------------------------End of fetch block
 
     /* const test = async () => {
@@ -64,7 +93,7 @@ function App() {
   
 
 
-  //------------------------------------------API requests
+  //------------------------------------------API requests ---------------THIS IS USED TO HELP CREATE BLOGS,  delete, react, edit
   const APIRequest = async (url = '', optionsObj = null, errMsg = null) => {
     try {
       const response = await fetch(url, optionsObj)
@@ -76,39 +105,13 @@ function App() {
     }
   }
   //------------------------------------------------End of API requests
-/* console.log(data) */
 
-  const renderPagination = () => {
-    if (currentPage === 0) {
-      return (
-        <div>
-          <div>1</div>
-          <button onClick={() => fetchBlogs(4, 8, 1)}>Next</button>
-        </div>
-      )
-    } else if (currentPage < pageLimit - 2 && blogs.length === pageLimit ) {
-      return (
-        <div>
-          <button onClick={() => fetchBlogs((currentPage - 1) * 4, currentPage * 4, -1)}>Previous</button>{/* 0,4,-1 */}
-          <div>{currentPage + 1}</div>
-          <button onClick={() => fetchBlogs((currentPage + 1) * 4, (currentPage + 2) * 4, 1)}>Next</button> {/* 8, 12, 1 */}
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <button onClick={() => fetchBlogs(4, 8, -1)}>Previous</button>
-          <div>{currentPage + 1}</div>
-        </div>
-      )
-    }
-  }
 
 
 
   /* HOme------------------------------------------------------------------------------------- */
 
-  function Home({blogs, search, setSearch, fetchBlogs}) {
+  function Home({blogs, search, setSearch, itemsPerPage}) {
 /* function Home({blogs, search, setSearch, currentPage, setCurrentPage}) { */
 
     const [nameValue, setNameValue] = useState('')
@@ -120,32 +123,8 @@ function App() {
     const sortDateString = ["date"]
     const sortTitleString = ["title"]
 
-
-    
-    // const blogsPerPage = 4
-
-    // const totalBlogs = blogs.length/* <---- this is probably what needs to be changed */
-    // const totalPages = Math.ceil(totalBlogs / blogsPerPage)
-    // // // // console.log(blogs)
-
-
-
-    // function handlePreviousPage() {
-    //   if (currentPage > 1) {
-    //     setCurrentPage(currentPage - 1)
-    //   }
-    // }
-  
-    // function handleNextPage() {
-    //   if (currentPage < totalPages) {
-    //     setCurrentPage(currentPage + 1)
-    //   }
-    // }
-
-
-
-      
-
+    const [currentPage, setCurrentPage] = useState(1);
+    const [numPages, setNumPages] = useState(1);
 
 
 
@@ -200,6 +179,20 @@ function App() {
             setBlogs(blogItems)
       }
 
+      
+      useEffect(() => {
+        setNumPages(Math.ceil(blogs.length / itemsPerPage));
+      }, [blogs, itemsPerPage]);
+    
+      const handlePageChange = (pageNum) => {
+        setCurrentPage(pageNum);
+      };
+    
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+    
+      const paginatedData = blogs.slice(startIndex, endIndex);
+
 
     return (
       <div className="blog-list">
@@ -208,11 +201,9 @@ function App() {
 
         <Link to="/create">Create a blog</Link>
 
-        <SearchBlog search={search} setSearch={setSearch}/>
+        <SearchBlog search={search} setSearch={setSearch} />
 
-        
-
-          <button value={nameValue} onClick={sortName}>Name</button>
+        <button value={nameValue} onClick={sortName}>Name</button>
 
           <button value={categoryValue} onClick={sortCategory}>Category</button>
 
@@ -220,11 +211,14 @@ function App() {
 
           <button value={titleValue} onClick={sortTitle}>Title</button>
 
-        {isPending && <p>loading...</p>}
+
+
+{/*         {isPending && <p>loading...</p>} */}
         {!error && <div>{blogs.length  ? (
           <div>
 
-            {blogs.map((blog) => (
+{paginatedData.length > 0 ? (
+          paginatedData.map((blog) => (
               <div key={blog.id} className="blog-itemsssss">
 
                 <p>{blog.name}</p>
@@ -236,8 +230,21 @@ function App() {
                 <Link to={`/blogs/${blog.id}`}>View Blog</Link>
 
               </div>
-            ))}
-
+            ))
+          ):(
+            <div>Loading...</div>
+          )}
+          <div>
+            {Array.from({ length: numPages }, (_, i) => i + 1).map((pageNum) => (
+            <button
+              key={pageNum}
+              onClick={() => handlePageChange(pageNum)}
+              style={{ fontWeight: pageNum === currentPage ? 'bold' : 'normal' }}
+            >
+              {pageNum}
+            </button>
+          ))}
+          </div>
           </div>
         ) : (<p>There are no more blogs....</p>)}</div>}
 
@@ -271,6 +278,49 @@ function App() {
       </form>
     )
   }
+
+
+//   function SearchBlog({search, setSearch}) {
+//     const [datas, setDatas] = useState()
+
+//     const test = async (e) => {
+//       e.preventDefault()
+//       const response = await fetch(`http://localhost:3500/blogs`)
+//       const data = await response.json()
+//       setDatas(data.filter(blog => ((blog.body).toLowerCase()).includes(search.toLowerCase())))
+//     }
+
+//     console.log(datas)
+
+    
+//     return (
+//       <div>
+//         <form className="search-blog" onSubmit={(e) => test(e)}>
+//           <label >Search</label>
+//           <input type="text" autoFocus value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search Blogs" ></input>
+//           <button>Submit</button>
+//         </form>
+
+//         {search && <div>
+//           {datas.map((data) => (
+//               <div key={data.id} className="blog-itemsssss">
+
+//                 <p>{data.name}</p>
+//                 <p>{data.category}</p>
+//                 <h3>{data.title}</h3>
+//                 <p>{(data.body).length <= 35 ? data.body : `${(data.body).slice(0,35)}...`}</p>
+//                 <p>{data.date}</p>
+// {/* 
+//                 <Link to={`/blogs/${data.id}`}>View Blog</Link> */}
+
+//               </div>
+//             ))}
+//           </div>}
+
+//       </div>
+
+//     )
+//   }
 
 
 
@@ -324,8 +374,8 @@ function App() {
 
     const handleSubmit = async (e) => {
       e.preventDefault()
-      /* const id = blogs.length ? blogs[blogs.length - 1].id + 1 : 1 */
-      /* const blog = {name, title, category, body, date, checked: false, id} */
+/*       const id = blogs.length ? blogs[blogs.length - 1].id + 1 : 1
+      const blog = {name, title, category, body, date, checked: false, id} */
       const blog = {name, title, category, body, date, checked: false}
       /* const blogItems = [...blogs, blog] */
 
@@ -339,7 +389,7 @@ function App() {
         }, 
         body: JSON.stringify(blog)
       }
-      const result = await APIRequest(API_URL, postOptions).then(() => {navigate('/')})
+      const result = await APIRequest(API_URL, postOptions).then(() => {navigate('/')}).then(() => {window.location.reload(true)})
       if (result) setError(result)
     }
     
@@ -521,19 +571,22 @@ return (
     <Route path="/create" element={<CreateBlog blogs={blogs} />} />
    {/*  <CreateBlog name={name} setName={setName} title={title} setTitle={setTitle} category={category} setCategory={setCategory} body={body} setBody={setBody} date={date} setDate={setDate} handleSubmit={handleSubmit}/> */}
     
-
+    {/* <Route path="/search" element={<SearchBlog search={search} setSearch={setSearch}/>} /> */}
     
     <Route path="/" element={
       <div>
         {error && <p>{`Error: ${error}`}</p>}
 
+
+
         <Home blogs={blogs.filter(blog => ((blog.body).toLowerCase()).includes(search.toLowerCase()))} 
-        search={search}
-        setSearch={setSearch}
         useEffect={useEffect}
         fetchBlogs={fetchBlogs}
+        search={search}
+        setSearch={setSearch}
+        itemsPerPage={4}
         />
-        <div>{renderPagination()}</div>
+        {/* <div>{renderPagination()}</div> */}
 
         {/* <button onClick={test}>YAYYYYYYYY</button> */}
 
@@ -587,3 +640,63 @@ export default App
 
 
     /*     const sortOptions = ["name", "category", "date"] */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* console.log(data) */
+
+  // const renderPagination = () => {
+  //   if (currentPage === 0) {
+  //     return (
+  //       <div>
+  //         <div>1</div>
+  //         <button onClick={() => fetchBlogs(4, 8, 1)}>Next</button>
+  //       </div>
+  //     )
+  //   } else if (currentPage < pageLimit - 2 && blogs.length === pageLimit ) {
+  //     return (
+  //       <div>
+  //         <button onClick={() => fetchBlogs((currentPage - 1) * 4, currentPage * 4, -1)}>Previous</button>{/* 0,4,-1 */}
+  //         <div>{currentPage + 1}</div>
+  //         <button onClick={() => fetchBlogs((currentPage + 1) * 4, (currentPage + 2) * 4, 1)}>Next</button> {/* 8, 12, 1 */}
+  //       </div>
+  //     )
+  //   } 
+  //   else if (currentPage < pageLimit - 1 && blogs.length === pageLimit ) {
+  //     return (
+  //       <div>
+  //         <button onClick={() => fetchBlogs((currentPage - 1) * 4, currentPage * 4, -1)}>Previous</button>{/* 4,8,-1 */}
+  //         <div>{currentPage + 1}</div>
+  //         <button onClick={() => fetchBlogs((currentPage + 1) * 4, (currentPage + 2) * 4, 1)}>Next</button> {/* 12, 16, 1 */}
+  //       </div>
+  //     )
+  //   } else {
+  //     return (
+  //       <div>
+  //         <button onClick={() => fetchBlogs(8, 12, -1)}>Previous</button>
+  //         <div>{currentPage + 1}</div>
+  //       </div>
+  //     )
+  //   }
+  // }
