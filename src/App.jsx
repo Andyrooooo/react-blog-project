@@ -26,6 +26,7 @@ function App() {
   const [error, setError] = useState(null)
 /*   const [isPending, setIsPending] = useState(true) */
   const [search, setSearch] = useState('')
+  const [comments, setComments] = useState([])
 
 
 
@@ -97,9 +98,9 @@ function App() {
   const APIRequest = async (url = '', optionsObj = null, errMsg = null) => {
     try {
       const response = await fetch(url, optionsObj)
-      if (!response.ok) throw Error('pleas reload the app')
+      if (!response.ok) throw Error('Error. Please reload the app')
     } catch (err) {
-      error = err.message     /* -----------------------------------------------------The variable names need to be changed later */
+      console.log(err.message) 
     } finally {
       return errMsg
     }
@@ -125,6 +126,9 @@ function App() {
 
     const [currentPage, setCurrentPage] = useState(1);
     const [numPages, setNumPages] = useState(1);
+
+
+
 
 
 
@@ -236,17 +240,36 @@ function App() {
           )}
           <div>
             {Array.from({ length: numPages }, (_, i) => i + 1).map((pageNum) => (
-            <button
-              key={pageNum}
-              onClick={() => handlePageChange(pageNum)}
-              style={{ fontWeight: pageNum === currentPage ? 'bold' : 'normal' }}
-            >
-              {pageNum}
-            </button>
+            <button key={pageNum} onClick={() => handlePageChange(pageNum)}> {pageNum} </button>
           ))}
           </div>
           </div>
         ) : (<p>There are no more blogs....</p>)}</div>}
+
+
+
+        {/* {!error && <div>{blogs.length  ? (
+          <div>
+
+
+          {blogs.map((blog) => (
+              <div key={blog.id} className="blog-itemsssss">
+
+                <p>{blog.name}</p>
+                <p>{blog.category}</p>
+                <h3>{blog.title}</h3>
+                <p>{(blog.body).length <= 35 ? blog.body : `${(blog.body).slice(0,35)}...`}</p>
+                <p>{blog.date}</p>
+
+                <Link to={`/blogs/${blog.id}`}>View Blog</Link>
+
+              </div>
+            ))}
+
+          </div>
+        ) : (<p>There are no more blogs....</p>)}</div>} */}
+
+
 
       {/* <div>
         <button onClick={handlePreviousPage}>Previous</button>
@@ -262,7 +285,10 @@ function App() {
         <div>Page {currentPage} of {totalPages}</div>
       </div> */}
 
-      </div>
+
+
+
+      </div> // End of JSX return
     )
   }
 
@@ -325,41 +351,9 @@ function App() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   /* Add blog------------------------------------------------------------------------------------- */
 
-  function CreateBlog({blogs}) {
+  function CreateBlog({blogs, comments, setComments}) {
   /* function CreateBlog({name, setName, title, setTitle, category, setCategory, body, setBody, date, setDate, handleSubmit}) { */
 
 
@@ -372,25 +366,66 @@ function App() {
 
 
 
+
+    
+
+
     const handleSubmit = async (e) => {
       e.preventDefault()
-/*       const id = blogs.length ? blogs[blogs.length - 1].id + 1 : 1
-      const blog = {name, title, category, body, date, checked: false, id} */
-      const blog = {name, title, category, body, date, checked: false}
-      /* const blogItems = [...blogs, blog] */
+
+      const blogResponse = await fetch(API_URL, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify({name, title, category, body, date, checked: false, comments})
+      })
+
+      const blogData = await blogResponse.json()
+
+      const id = blogData.id
+
+      const commentId = comments.length ? comments[comments.length - 1].id + 1 : 1
+
+      const blog = {name, title, category, body, date, checked: false, comments: [{text: "", id: commentId}], id}
+      
+      const blogItems = [...blogs, blog]
+
+      setBlogs(blogItems)
+
+
+
+      const commentResponse = await fetch(`${API_URL}/${id}`, {
+        method: 'PATCH',
+        headers: {'Content-Type': 'application/json'}, 
+        body: JSON.stringify(blog)
+      })
+
+      const commentData = await commentResponse.json().then(navigate('/'))
+
+
+      
+      
+
+
+
+/* .then(() => {navigate('/')}).then(() => {window.location.reload(true)}) */
+
+      // const id = blogs.length ? blogs[blogs.length - 1].id + 1 : 1
+      // const blog = {name, title, category, body, date, checked: false, comment: [{}], id}
+      /* const blog = {name, title, category, body, date, checked: false} */
+      // const blogItems = [...blogs, blog]
 
       /* setAndSaveBlogs(blogItems) */
-      /* setBlogs(blogItems) */
+      // setBlogs(blogItems)
 
-      const postOptions = {
+      /* const postOptions = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         }, 
         body: JSON.stringify(blog)
       }
-      const result = await APIRequest(API_URL, postOptions).then(() => {navigate('/')}).then(() => {window.location.reload(true)})
-      if (result) setError(result)
+      const result = await APIRequest(API_URL, postOptions).then(() => {navigate('/')})
+      if (result) setError(result) */
     }
     
     return (
@@ -426,9 +461,10 @@ function App() {
 
    /* blog details module-------------------------------------------------------------------------------------------------------------- */
 
-   function BlogDetails({blogs}) {
+   function BlogDetails({blogs, comments, setComments}) {
     const {id} = useParams()
     const blog = blogs.find(blog => (blog.id).toString() === id)
+/*     console.log(blog) */
     const navigate = useNavigate()
     const [editMode, setEditMode] = useState(false)
     const [name, setName] = useState('')
@@ -436,6 +472,8 @@ function App() {
     const [category, setCategory] = useState('')
     const [body, setBody] = useState('')
     const [date, setDate] = useState('')
+    const [text, setText] = useState('')
+
 
 
       /* ----------------------------------------------------------------Changes checkbox to true */
@@ -495,10 +533,10 @@ function App() {
 
 
 
-    const submitEdit = async (id, e) => {
+    const submitEdit = async (id, e) => {    
       e.preventDefault()
 
-      const blog = {name, title, category, body, date, checked: false}
+      const blog = {name, title, category, body, date, checked: false, comments: [{text: "", id: 1}]}
 
       const postOptions = {
         method: 'PUT',
@@ -518,6 +556,91 @@ function App() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    const submitComment = async (id, e) => {
+      e.preventDefault()
+
+      const commentIds = blog.comments.length ? blog.comments[blog.comments.length - 1].id + 1 : 1
+      console.log(commentIds)
+
+      const comment = {text: text, id: commentIds}
+
+      const commentItems = [...blog.comments, comment]
+
+      /* setComments(commentItems) */
+      blog.comments = commentItems
+
+      console.log(blog.comments)
+
+      fetch(`http://localhost:3500/blogs/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify({name: blog.name, title: blog.title, category: blog.category, body: blog.body, date: blog.date, comments: blog.comments})
+      })
+
+      setText('')
+    }
+
+
+    const deleteComment = (id) => {
+
+      const grabComment = blog.comments.filter((comment) => comment.id !== id)
+
+      blog.comments = grabComment
+
+
+      fetch(`http://localhost:3500/blogs/${blog.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        }, 
+        body: JSON.stringify({name: blog.name, title: blog.title, category: blog.category, body: blog.body, date: blog.date, comments: blog.comments})
+      }).then(() => {navigate('/')})
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return (
       <div className="blog-details">
 
@@ -528,6 +651,28 @@ function App() {
         <h3>{blog.title}</h3>
         <p>{blog.body}</p>
         <p>{blog.date}</p>
+
+        <form onSubmit={(e) => submitComment(blog.id, e)}>
+            <label>Comments:</label>
+            <input type="text" value={text} onChange={(e) => setText(e.target.value)}></input>
+            <button>Submit</button>
+          </form>
+
+
+{/* ----------------------------------------------------------------------------------------------------------THIS PART WORKS------------------------------------- */}
+          <h2>Comments</h2>
+        {blog.comments.map((comment) => (
+          <div key={comment.id}>
+            <p>{comment.text}</p>
+            <button onClick={() => deleteComment(comment.id)}>Delete</button>
+          </div>
+          ))}
+{/* ----------------------------------------------------------------------------------------------------------------------------------------------- */}
+
+
+
+          
+
         <i className="fa-solid fa-trash-can" onClick={() => deleteBlog(blog.id)}></i>
         <button onClick={editBlog}>Edit</button>
         </div>}
@@ -568,7 +713,7 @@ return (
     <h1>Andrew's Blog!</h1>
     <Routes>
 
-    <Route path="/create" element={<CreateBlog blogs={blogs} />} />
+    <Route path="/create" element={<CreateBlog blogs={blogs} comments={comments} setComments={setComments}/>} />
    {/*  <CreateBlog name={name} setName={setName} title={title} setTitle={setTitle} category={category} setCategory={setCategory} body={body} setBody={setBody} date={date} setDate={setDate} handleSubmit={handleSubmit}/> */}
     
     {/* <Route path="/search" element={<SearchBlog search={search} setSearch={setSearch}/>} /> */}
@@ -585,6 +730,7 @@ return (
         search={search}
         setSearch={setSearch}
         itemsPerPage={4}
+
         />
         {/* <div>{renderPagination()}</div> */}
 
@@ -597,7 +743,7 @@ return (
 
     {/* blogs={blogs.filter(blog => ((blog.body).toLowerCase()).includes(search.toLowerCase))}  */}
 
-    <Route path="/blogs/:id" element={<BlogDetails blogs={blogs}/>} />
+    <Route path="/blogs/:id" element={<BlogDetails blogs={blogs} comments={comments} setComments={setComments}/>} />
 
     </Routes>
   </div>
