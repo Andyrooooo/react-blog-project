@@ -1,4 +1,393 @@
-.blog-itemsssss {
-    background-color: rgb(202, 202, 202);
+body {
+    max-width: 1440px;
+    margin: 0 auto 1rem auto;
+    background: rgb(237, 237, 237);
+}
+
+#root {margin: 0 1%;}
+
+.app-title {
+    border-bottom: 1px solid rgb(169, 169, 169);
+    padding-bottom: 1rem;
+    margin-top: 2rem;
+}
+
+a.link-to-create {
+    float: right;
+    background-color: rgb(0, 186, 158);
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-top: -5.7rem;
+}
+
+a.link-to-create:hover {
+    box-shadow: 1px 1px 4px rgb(0, 96, 81);
+}
+
+.search-input {
+    width: 100%;
+    padding: 15px 0 15px 20px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
     margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+.search-input:hover {box-shadow: 1px 3px 8px rgb(146, 146, 146);}
+
+.filter-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.filter-name, .filter-title, .filter-category, .filter-date {
+    padding: 15px 40px;
+    border-radius: 5px;
+    border: 1px solid rgb(0, 186, 158);
+    /* box-shadow: 1px 1px 2px rgb(0, 0, 0); */
+    background: rgb(237, 237, 237);
+    color: rgb(0, 186, 158);
+}
+.filter-name:hover, .filter-title:hover, .filter-category:hover, .filter-date:hover {
+    background-color:rgb(0, 160, 136);
+    color: white;
+}
+/* .filter-name {
+    background-color:rgb(0, 186, 158);
+    color: white;
+}
+.filter-category {
+    background-color:rgb(0, 162, 138);
+    color: white;
+}
+.filter-date {
+    background-color:rgb(0, 136, 116);
+    color: white;
+}
+.filter-title {
+    background-color:rgb(1, 97, 83);
+    color: white;
+} */
+
+.blog-list-title {
+    color:rgb(0, 186, 158);
+}
+
+.each-blog {
+    background-color: white;
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+}
+.each-blog:hover {
+    box-shadow: 1px 3px 8px rgb(146, 146, 146);
+}
+
+.blog-category {float: right;}
+.blog-name {
+    border-bottom: 1px solid rgb(169, 169, 169);
+    padding-bottom: 1rem;
+    color: rgb(0, 186, 158);
+}
+
+.blog-body {
+    padding-bottom: 2rem;
+    color: grey;
+}
+
+.view-blog-link {
+    float: right;
+    background-color: rgb(0, 186, 158);
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+.blog-title {margin-top: 2rem;}
+
+.blog-date {
+    font-size: .8rem;
+    margin-top: 3.5rem;
+    margin-bottom: 9px;
+}
+
+.view-blog-link:hover {background-color:rgb(0, 160, 136);}
+
+.pagination-buttons {
+    display: flex; 
+    justify-content: center;
+}
+.pagination-button {
+    background-color: rgb(0, 186, 158);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1.4rem;
+    margin: 0 5px;
+}
+
+.pagination-button:hover {background-color: rgb(0, 160, 136);}
+
+.back-to-home-from-details {
+    float: right;
+    background-color: rgb(0, 186, 158);
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-top: -4.7rem;
+}
+
+.back-to-home-from-details:hover {
+    box-shadow: 1px 1px 4px rgb(0, 96, 81);
+}
+
+.liked {
+    color:rgb(0, 186, 158);
+    font-size: 2rem;
+    margin: -2.2rem;
+}
+.disliked {
+    color:rgb(0, 0, 0);
+    font-size: 2rem;
+}
+
+.hidden {visibility: hidden;}
+.unhide {display: block;}
+
+.blog-details-name {
+    color:rgb(0, 186, 158);
+}
+
+.blog-details-category {
+    margin-left: -3rem;
+}
+
+.details-section {
+ display: flex;
+ justify-content: space-between;
+ margin-top: -1rem;
+}
+
+.blog-details-title {
+    text-align: center; 
+    font-size: 1.6rem;
+}
+
+.blog-details-body {color: rgb(99, 99, 99);}
+
+.comment-title {
+    padding-top: 1rem;
+}
+
+.comment-block {
+    justify-content: space-between;
+    display: flex;
+}
+
+.comment-input {
+    flex-basis: 86%;
+    padding: 15px 0 15px 20px;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+}
+
+.comment-button {
+    flex-basis: 11%;
+    border: none;
+    background-color:rgb(0, 186, 158);
+    color: white;
+    border-radius: 5px;
+}
+
+.comment-input:hover {box-shadow: 1px 3px 8px rgb(146, 146, 146);}
+
+.comment-button:hover {box-shadow: 1px 1px 4px rgb(0, 96, 81);}
+
+.comment-section {
+    background-color: white;
+    padding: 15px 20px;
+    margin-top: 1rem;
+    border-radius: 5px;
+}
+
+.comment-delete {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(196, 196, 196);
+}
+
+.comments {
+    flex-basis: 95%;
+}
+.comment-delete-button {
+    flex-basis: 5%;
+    margin-left: 1rem;
+    color:rgb(0, 186, 158);
+    font-size: 1.4rem;
+    text-align: right;
+}
+.comment-delete-button:hover {color: rgb(0, 160, 136);}
+
+.actions-section {
+    display: flex;
+    border-top: 1px solid rgb(169, 169, 169);
+    padding-top: .5rem;
+}
+
+
+.blog-details-date {
+    font-size: .8rem;
+}
+
+.blog-details-date, .delete-post-container {
+    flex-basis: 40%;
+}
+
+.edit-button-container {
+    flex-basis: 20%;
+}
+
+.delete-post-button {
+    color: red;
+    float: right;
+    font-size: 2rem;
+    padding-top: .2rem;
+}
+
+.delete-post-button:hover {
+    text-shadow: 2px 2px 15px rgb(142, 0, 0);
+}
+
+.edit-button {
+    border: none;
+    background-color:rgb(0, 234, 199);
+    border-radius: 5px;
+    padding: 15px 0;
+    width: 100%;
+}
+
+.edit-button:hover {
+    box-shadow: 1px 1px 4px rgb(0, 96, 81);
+}
+
+.back-to-home-from-create {
+    float: right;
+    background-color: rgb(0, 186, 158);
+    text-decoration: none;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    margin-top: -5.7rem;
+}
+
+.back-to-home-from-create:hover {
+    box-shadow: 1px 1px 4px rgb(0, 96, 81);
+}
+
+.create-new-title {
+    color: rgb(0, 186, 158);
+}
+
+.new-blog-name, .new-blog-category, .new-blog-title, .new-blog-date, .new-blog-body {
+    display: block;
+    color:rgb(0, 186, 158);
+    margin-bottom: .3rem;
+}
+
+.new-blog-name-input, .new-blog-category-input, .new-blog-title-input, .new-blog-date-input, .new-blog-body-input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    padding: 15px 0 15px 20px;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+}
+
+.new-blog-date-input {
+    padding-right: 20px;
+    width: 50%;
+}
+
+.new-blog-body-input {height: 200px;}
+
+.new-blog-name-input:hover, .new-blog-category-input:hover, .new-blog-title-input:hover, .new-blog-date-input:hover, .new-blog-body-input:hover {box-shadow: 1px 3px 8px rgb(146, 146, 146);}
+
+.new-blog-button {
+    border: none;
+    background-color:rgb(0, 186, 158);
+    border-radius: 5px;
+    padding: 15px 0;
+    width: 25%;
+    color: white;
+    margin: 0 37.5%;
+}
+
+.new-blog-button:hover {
+    box-shadow: 1px 1px 4px rgb(0, 96, 81);
+}
+
+.blog-edit-name-label, .blog-edit-category-label, .blog-edit-title-label, .blog-edit-date-label, .blog-edit-body-label {
+    display: block;
+    color:rgb(0, 186, 158);
+    margin-bottom: .3rem;
+}
+
+.blog-edit-name-input, .blog-edit-category-input, .blog-edit-title-input, .blog-edit-body-input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    padding: 15px 0 15px 20px;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+}
+
+.blog-edit-date-input {
+    width: 50%;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+    padding: 15px 20px;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+}
+
+.blog-edit-body-input {height: 200px;}
+
+.blog-edit-submit-button, .blog-edit-cancel-button {
+    display: inline-block;
+    border: none;
+    background-color:rgb(0, 186, 158);
+    border-radius: 5px;
+    padding: 15px 0;
+    color: white;
+    flex-basis: 25%;
+}
+
+.edit-cancel-buttons {
+    justify-content: space-around;
+    display: flex;
+}
+
+.blog-edit-cancel-button { 
+    background-color: rgb(0, 234, 199); 
+    color: black;
+}
+
+.blog-edit-name-input:hover, .blog-edit-category-input:hover, .blog-edit-title-input:hover, .blog-edit-body-input:hover, .blog-edit-date-input:hover {
+    box-shadow: 1px 3px 8px rgb(146, 146, 146);
+}
+
+.blog-edit-submit-button:hover, .blog-edit-cancel-button:hover {
+    box-shadow: 1px 1px 4px rgb(0, 96, 81);
 }

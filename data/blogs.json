@@ -2,34 +2,19 @@
   "blogs": [
     {
       "name": "Andrew",
-      "title": "My First Blog",
-      "category": "General",
-      "body": "Hey guys this is my first blog post! I was hoping to have a lot more to say but all I can think of is welcome to my app!",
-      "date": "2023-04-16",
-      "checked": false,
-      "comments": [
-        {
-          "text": "",
-          "id": 1
-        }
-      ],
-      "id": 1
-    },
-    {
-      "name": "Andrew",
       "title": "Day at the skatepark",
       "category": "Skateboarding",
       "body": "I guess today I want to talk about skateboarding. So, today I went to the Greenwood skatepark with my dog Zeus and finally decided to try a boneless 180 down the 8 stair cause I havent done it in a while. Bad decision.",
       "date": "2023-04-17",
-      "checked": false,
+      "checked": true,
       "comments": [
-        {
-          "text": "",
-          "id": 1
-        },
         {
           "text": "I love skateboarding",
           "id": 2
+        },
+        {
+          "text": "hgvhvhgvhg",
+          "id": 3
         }
       ],
       "id": 2
@@ -40,12 +25,8 @@
       "category": "Animals",
       "body": "I wonder what its like to be a dog. You get to sleep all day, eat, and drink. Not to mention all the places you can pee and poop and not have to worry about other people looking at you weird haha",
       "date": "2023-03-27",
-      "checked": false,
+      "checked": true,
       "comments": [
-        {
-          "text": "",
-          "id": 1
-        },
         {
           "text": "It must be so nice",
           "id": 2
@@ -54,34 +35,39 @@
       "id": 3
     },
     {
-      "name": "sdasdfasdfasdfasd",
-      "title": "sdasdfasdfasdfasd",
-      "category": "sdasdfasdfasdfasd",
-      "body": "sdasdfasdfasdfasdsdasdfasdfasdfasdsdasdfasdfasdfasdsdasdfasdfasdfasdsdasdfasdfasdfasdsdasdfasdfasdfasdsdasdfasdfasdfasdsdasdfasdfasdfasd",
-      "date": "2023-04-11",
+      "name": "Rick Sanchez",
+      "title": "Party at my place!!!!!!!!!!!!!!!!!!!!!!!",
+      "category": "Events",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "date": "2023-04-28",
       "checked": false,
-      "comments": [
-        {
-          "text": "asdfasdf",
-          "id": 1
-        }
-      ],
-      "id": 4
+      "comments": [],
+      "id": 7
     },
     {
-      "name": "test",
-      "title": "test",
-      "category": "test",
-      "body": "testtesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttesttest",
-      "date": "2023-04-20",
+      "name": "Jason Oakerson",
+      "title": "Who is your favorite comedian?",
+      "category": "Comedy",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "date": "2023-04-09",
       "checked": false,
       "comments": [
         {
-          "text": "",
+          "text": "Nick Mullen! He's the best!",
           "id": 1
         }
       ],
-      "id": 5
+      "id": 8
+    },
+    {
+      "name": "Courage Bag",
+      "title": "HELP HELP!",
+      "category": "Supernatural",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      "date": "2023-04-25",
+      "checked": false,
+      "comments": [],
+      "id": 9
     }
   ]
 }
