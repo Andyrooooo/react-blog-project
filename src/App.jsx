@@ -6,7 +6,7 @@ import {BrowserRouter as Router, Route, Routes, useParams, Link, useNavigate} fr
 /* functions for the main APP mount----------------------------------------------------------------------- */
 
 function App() {
-  const API_URL = 'http://localhost:3500/blogs'
+  const API_URL = 'https://trusting-storm-lobster.glitch.me/blogs'
   /* const API_URL = `http://localhost:3500/blogs?_start=${start}&_end=${end}`
   const location_API_URL = 'http://localhost:3500/blogs' */
   
@@ -439,7 +439,7 @@ function App() {
 
       console.log(blog.comments)
 
-      fetch(`http://localhost:3500/blogs/${id}`, {
+      fetch(`https://trusting-storm-lobster.glitch.me/blogs/${id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
@@ -458,7 +458,7 @@ function App() {
       blog.comments = grabComment
 
 
-      fetch(`http://localhost:3500/blogs/${blog.id}`, {
+      fetch(`https://trusting-storm-lobster.glitch.me/blogs/${blog.id}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'
