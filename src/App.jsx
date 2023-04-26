@@ -334,11 +334,11 @@ function App() {
 /*     console.log(blog) */
     const navigate = useNavigate()
     const [editMode, setEditMode] = useState(false)
-    const [name, setName] = useState('')
-    const [title, setTitle] = useState('')
-    const [category, setCategory] = useState('')
-    const [body, setBody] = useState('')
-    const [date, setDate] = useState('')
+    const [name, setName] = useState(blog.name)
+    const [title, setTitle] = useState(blog.title)
+    const [category, setCategory] = useState(blog.category)
+    const [body, setBody] = useState(blog.body)
+    const [date, setDate] = useState(blog.date)
     const [text, setText] = useState('')
 
 
