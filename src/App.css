@@ -147,14 +147,18 @@ a.link-to-create:hover {
     box-shadow: 1px 1px 4px rgb(0, 96, 81);
 }
 
+.stars{flex-basis: 10%;}
+
 .liked {
     color:rgb(0, 186, 158);
     font-size: 2rem;
-    margin: -2.2rem;
+    float: right;
 }
 .disliked {
     color:rgb(0, 0, 0);
     font-size: 2rem;
+    float: right;
+    margin-right: -2.2rem;
 }
 
 .hidden {visibility: hidden;}
@@ -162,10 +166,11 @@ a.link-to-create:hover {
 
 .blog-details-name {
     color:rgb(0, 186, 158);
+    flex-basis: 10%;
 }
 
 .blog-details-category {
-    margin-left: -3rem;
+flex-basis: 10%;
 }
 
 .details-section {
